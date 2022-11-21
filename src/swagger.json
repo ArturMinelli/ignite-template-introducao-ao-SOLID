@@ -1,0 +1,14 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Desafio Introdução ao SOLID",
+    "description": "An api for doing common Users operations, such as creating, listing, and giving them admin access.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "arturminelli@gmail.com"
+    }
+  },
+  "paths": {
+
+  }
+}
