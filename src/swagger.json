@@ -169,6 +169,83 @@
           }
         }
       }
+    },
+    "/users/:user_id": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get a specific user",
+        "description": "Only admin users can request this operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "description": "The id of the requested user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "42881ca2-f86b-4c58-bd95-cc5057d39b00",
+                  "admin": false,
+                  "name": "Artur Minelli Peixoto",
+                  "email": "arturminelli@gmail.com",
+                  "created_at": "2022-11-21T11:14:02.044Z",
+                  "updated_at": "2022-11-21T11:14:02.044Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User could not be found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "User with id 42881ca2-f86b-4c58-bd95-cc5057d39b00 could not be found"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
