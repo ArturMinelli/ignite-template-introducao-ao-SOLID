@@ -37,10 +37,60 @@
         },
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "42881ca2-f86b-4c58-bd95-cc5057d39b00",
+                  "admin": false,
+                  "name": "Artur Minelli Peixoto",
+                  "email": "arturminelli@gmail.com",
+                  "created_at": "2022-11-21T11:14:02.044Z",
+                  "updated_at": "2022-11-21T11:14:02.044Z"
+                }
+              }
+            }
           },
           "400": {
-            "description": "User already exists"
+            "description": "Email already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Email already exists"
+                }
+              }
+            }
           }
         }
       },
@@ -69,6 +119,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "User not authorized or user is not registered"
           }
         }
       }

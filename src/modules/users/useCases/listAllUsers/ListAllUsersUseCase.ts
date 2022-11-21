@@ -16,9 +16,7 @@ class ListAllUsersUseCase {
     }
 
     if (!user.admin) {
-      throw new Error(
-        `User with id ${user_id} is not authorized to list users`
-      );
+      throw new Error("User already exists");
     }
 
     return this.usersRepository.list();
