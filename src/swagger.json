@@ -9,6 +9,69 @@
     }
   },
   "paths": {
-
+    "/users": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Creates a new User",
+        "description": "Creates a new User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "object": "User",
+                "properties": {
+                  "name" : {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Example Name",
+                  "email": "examplename@example.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "User already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["User"],
+        "summary": "Lists all of the registered users",
+        "description": "Lists all of the registered users",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
