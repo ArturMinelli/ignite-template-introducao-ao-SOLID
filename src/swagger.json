@@ -162,7 +162,7 @@
                   }
                 },
                 "example": {
-                  "error": "User with id 42881ca2-f86b-4c58-bd95-cc5057d39b00 does not exist"
+                  "error": "User with id 42881ca2-f86b-4c58-bd95-cc5057d39b00 could not be found"
                 }
               }
             }
@@ -170,7 +170,7 @@
         }
       }
     },
-    "/users/:user_id": {
+    "/users/{user_id}": {
       "get": {
         "tags": ["User"],
         "summary": "Get a specific user",
@@ -228,6 +228,82 @@
           },
           "404": {
             "description": "User could not be found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "User with id 42881ca2-f86b-4c58-bd95-cc5057d39b00 could not be found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "tags": ["User"],
+        "summary": "Turns the specified user into an admin",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "description": "The id of the user to be turned into an admin"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "42881ca2-f86b-4c58-bd95-cc5057d39b00",
+                  "admin": true,
+                  "name": "Artur Minelli Peixoto",
+                  "email": "arturminelli@gmail.com",
+                  "created_at": "2022-11-21T11:14:02.044Z",
+                  "updated_at": "2022-11-21T11:14:02.044Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User does not exist",
             "content": {
               "application/json": {
                 "schema": {
